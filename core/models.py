@@ -3,15 +3,19 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-class Service(models.Model):
-    # name
-    # description
-    # url
-    # date_created
-    pass
+from agent.models import Entity, NeoAgent
 
-class Organization(models.Model):
-    pass
+class Service(Entity):
+    description = models.CharField(max_length=50)
+    url = models.URLField()
 
-class Agent(models.Model):
-    pass
+    def __str__(self):
+        return '{}, {}'.format(self.name, self.description)
+
+class Organization(Entity):
+    def __str__(self):
+        return self.name
+
+class Agent(NeoAgent):
+    def __str__(self):
+        return self.get_full_name()
