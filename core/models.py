@@ -13,8 +13,10 @@ class Service(Entity):
         return '{}, {}'.format(self.name, self.description)
 
 class Organization(Entity):
+    service = models.ForeignKey(Service)
+
     def __str__(self):
-        return self.name
+        return '{} - {}'.format(self.name, self.service.name)
 
 class Agent(NeoAgent):
     def __str__(self):
