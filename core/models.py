@@ -19,5 +19,7 @@ class Organization(Entity):
         return '{} - {}'.format(self.name, self.service.name)
 
 class Agent(NeoAgent):
+    organization = models.ForeignKey(Organization)
+
     def __str__(self):
         return self.get_full_name()
