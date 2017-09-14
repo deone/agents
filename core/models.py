@@ -26,3 +26,10 @@ class Agent(NeoAgent):
 
     def __str__(self):
         return self.get_full_name()
+
+class PhoneNumber(models.Model):
+    agent = models.ForeignKey(Agent)
+    number = models.CharField(max_length=10, unique=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.agent.get_full_name(), self.number)
